@@ -40,3 +40,6 @@ def handler(request):
         'headers': {'Content-Type': 'application/json'},
         'body': json.dumps(AGENTS)
     }
+
+application = handler
+app = handler

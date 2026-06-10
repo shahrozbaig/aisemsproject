@@ -134,3 +134,6 @@ def handler(request):
         'headers': {'Content-Type': 'application/json'},
         'body': json.dumps(report)
     }
+
+application = handler
+app = handler
