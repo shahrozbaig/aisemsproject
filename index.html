@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ClinDoc AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="static/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar bg-white shadow-sm">
+        <div class="sidebar-brand">
+          <div class="sidebar-logo">CD</div>
+          <div>
+            <h2>ClinDoc AI</h2>
+            <p>Clinical documentation assistant</p>
+          </div>
+        </div>
+        <nav class="nav flex-column sidebar-nav">
+          <a class="nav-link active" href="index.html"><i class="fa-solid fa-gauge-high me-2"></i> Dashboard</a>
+          <a class="nav-link" href="agents.html"><i class="fa-solid fa-robot me-2"></i> Agents</a>
+        </nav>
+      </aside>
+
+      <div class="main-panel">
+        <header class="topbar d-flex align-items-center justify-content-between px-4 py-3 shadow-sm mb-4">
+          <div>
+            <h3 class="mb-1">Clinical Documentation Assistant</h3>
+            <p class="text-muted mb-0">Premium AI workflow for healthcare documentation.</p>
+          </div>
+          <div class="status-chip px-3 py-2 rounded-pill bg-success bg-opacity-10 text-success">
+            <i class="fa-solid fa-circle-check me-2"></i> System Active
+          </div>
+        </header>
+
+        <main class="px-4 pb-4">
+          <div class="dashboard-grid">
+            <section class="hero-card p-4 rounded-4 shadow-sm">
+              <div class="d-flex flex-column flex-md-row justify-content-between gap-3 align-items-start">
+                <div>
+                  <span class="eyebrow text-primary">Patient intake</span>
+                  <h2 class="mt-3">Generate a clinical report in seconds</h2>
+                  <p class="text-muted">Enter patient symptoms and let ClinDoc AI simulate a professional diagnostic summary.</p>
+                </div>
+                <div class="assistant-panel p-4 rounded-4 position-relative overflow-hidden">
+                  <div class="jarvis-badge"><i class="fa-solid fa-robot"></i> JARVIS</div>
+                  <div class="assistant-avatar mb-3 shadow-sm"><i class="fa-solid fa-brain fa-2x"></i></div>
+                  <h5>Jarvis AI Assistant</h5>
+                  <p class="mb-2">Hello, I have analyzed the patient data and prepared a clinical summary.</p>
+                  <div class="pulse-ring"></div>
+                </div>
+              </div>
+
+              <form id="symptom-form" class="mt-4">
+                <div class="mb-3">
+                  <label for="symptoms-input" class="form-label">Enter patient symptoms</label>
+                  <textarea class="form-control form-control-lg shadow-sm bg-surface text-white border-secondary" id="symptoms-input" rows="4" placeholder="e.g. fever, headache, nausea"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg px-5 shadow-sm">Generate Clinical Report</button>
+              </form>
+            </section>
+
+            <div class="jarvis-widget">
+              <div class="jarvis-bot"><i class="fa-solid fa-robot"></i></div>
+              <div class="jarvis-header">
+                <div class="jarvis-dot"></div>
+                <div>
+                  <strong>Jarvis</strong>
+                  <div class="text-muted small">AI assistant online</div>
+                </div>
+              </div>
+              <div class="jarvis-text">Hi! I’m your clinical document assistant. I analyze symptoms, recommend treatment, and keep the patient summary crisp.</div>
+            </div>
+
+            <div class="row g-4">
+              <div class="col-lg-8">
+                <section class="report-card p-4 rounded-4 shadow-sm mb-4">
+                  <div class="d-flex align-items-start justify-content-between flex-wrap gap-3 mb-3">
+                    <div>
+                      <h4 class="mb-1">Latest Report</h4>
+                      <p class="text-muted mb-0">Quick view of the most recent clinical summary.</p>
+                    </div>
+                    <span id="latest-status-badge" class="badge bg-secondary py-2 px-3">No data</span>
+                  </div>
+
+                  <div class="row gy-4">
+                    <div class="col-md-4">
+                      <div class="stat-card p-3 rounded-4 bg-surface-soft">
+                        <span class="text-muted">Diagnosis</span>
+                        <h5 class="mt-2" id="latest-diagnosis">No report yet</h5>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="stat-card p-3 rounded-4 bg-surface-soft">
+                        <span class="text-muted">Severity</span>
+                        <h5 class="mt-2" id="latest-severity">--</h5>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="stat-card p-3 rounded-4 bg-surface-soft">
+                        <span class="text-muted">QA Score</span>
+                        <h5 class="mt-2" id="latest-qa">--</h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-4">
+                    <h6>Recommended medicines</h6>
+                    <div class="row g-3" id="medicines-list"></div>
+                  </div>
+
+                  <div class="mt-4 p-3 rounded-4 bg-primary bg-opacity-10">
+                    <strong>AI Message:</strong>
+                    <span id="ai-message-text">No report has been generated yet.</span>
+                  </div>
+                </section>
+
+                <section class="history-card p-4 rounded-4 shadow-sm bg-surface">
+                  <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div>
+                      <h4 class="mb-1">Patient History</h4>
+                      <p class="text-muted mb-0">Stored clinical reports generated in this session.</p>
+                    </div>
+                    <span id="report-count" class="badge bg-secondary py-2 px-3">0 records</span>
+                  </div>
+
+                  <div class="row g-3" id="history-container"></div>
+                </section>
+              </div>
+
+              <div class="col-lg-4">
+                <section class="stats-panel p-4 rounded-4 shadow-sm bg-surface mb-4">
+                  <h5 class="mb-3">Dashboard stats</h5>
+                  <div class="list-group list-group-flush">
+                    <div class="list-group-item d-flex justify-content-between align-items-center px-0 py-3 border-0">
+                      <span>Total Reports</span>
+                      <strong id="total-reports">0</strong>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center px-0 py-3 border-0">
+                      <span>Stable Reports</span>
+                      <strong id="stable-reports">0</strong>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center px-0 py-3 border-0">
+                      <span>Critical Reports</span>
+                      <strong id="critical-reports">0</strong>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center px-0 py-3 border-0">
+                      <span>AI Accuracy</span>
+                      <strong id="ai-accuracy">0%</strong>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="agent-summary p-4 rounded-4 shadow-sm bg-surface">
+                  <h5 class="mb-3">Agent status</h5>
+                  <div class="d-flex flex-column gap-3" id="agent-summary-list"></div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="static/main.js"></script>
+  </body>
+</html>

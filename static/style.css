@@ -34,6 +34,20 @@ body {
   background-color: var(--surface-soft) !important;
 }
 
+.bg-surface {
+  background-color: var(--surface) !important;
+  color: var(--text) !important;
+}
+
+.bg-surface-soft {
+  background-color: var(--surface-soft) !important;
+  color: var(--text) !important;
+}
+
+.bg-primary-soft {
+  background-color: rgba(124, 58, 237, 0.12) !important;
+}
+
 .text-muted {
   color: var(--muted) !important;
 }
