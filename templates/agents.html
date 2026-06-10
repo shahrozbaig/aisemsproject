@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="agents-page">
+  <div class="d-flex align-items-start justify-content-between flex-wrap gap-3 mb-4">
+    <div>
+      <span class="eyebrow text-primary">AI operations</span>
+      <h2 class="mt-2">Agent overview</h2>
+      <p class="text-muted">Track the clinical AI agents that support every report.</p>
+    </div>
+    <div class="status-chip bg-primary bg-opacity-10 text-primary py-2 px-3 rounded-pill">
+      <i class="fa-solid fa-robot me-2"></i> All agents active
+    </div>
+  </div>
+
+  <div class="row g-4">
+    {% for agent in agents %}
+    <div class="col-md-6 col-xl-4">
+      <div class="agent-card p-4 rounded-4 shadow-sm bg-white h-100">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <div class="agent-icon rounded-circle bg-primary bg-opacity-15 text-primary d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-robot fa-lg"></i>
+          </div>
+          <span class="badge bg-success py-2 px-3">{{ agent.status }}</span>
+        </div>
+        <h5>{{ agent.name }}</h5>
+        <p class="text-muted">{{ agent.role }}</p>
+        <div class="mt-4 pt-3 border-top text-muted">
+          <small><strong>Last action:</strong> {{ agent.action }}</small>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
